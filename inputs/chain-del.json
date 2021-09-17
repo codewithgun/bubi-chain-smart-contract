@@ -1,0 +1,6 @@
+{
+    "method": "chainDel",
+    "params": {
+        "metadata_key": "my_store"
+    }
+}

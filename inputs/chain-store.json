@@ -1,0 +1,7 @@
+{
+    "method": "chainStore",
+    "params": {
+        "metadata_key": "my_store",
+        "metadata_value": "hello world"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "method": "chainTLog",
+    "params": {
+        "topic": "MyTopic",
+        "args": ["string", 1, true]
+    }
+}

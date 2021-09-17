@@ -1,0 +1,8 @@
+{
+    "params": {
+        "totalSupply": "9223372036854775808",
+        "name": "Malaysia Ringgit",
+        "symbol": "MYRT",
+        "decimals": 6
+    }
+}
