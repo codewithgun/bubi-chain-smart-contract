@@ -1,7 +1,9 @@
 {
-    "method": "chainDelegateCall",
+    "method": "chainContractCall",
     "params": {
-        "contractAddress": "adxSWGKJJrQrWmsSjnB9n5hDnzZ6bGyigSdtD",
+        "contractAddress": "adxSpN9Q6XdaBqqHmp4Ma8W8zi5NsVbfWpCRs",
+        "asset": true,
+        "amount": "0",
         "input": "{\"method\":\"chainStore\",\"params\":{\"metadata_key\":\"my_store\",\"metadata_value\":\"hello world\"}}"
     }
 }

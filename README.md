@@ -13,7 +13,8 @@
 -   Similar to tron, where an address/account is activated after receive first GAS payment
 -   Transaction execution timeout is depends on both block gas limit, and time limit (1 seconds), therefore avoid too much loop
 -   Base reserve of 0.1 GAS for contract (not sure for account)
--   `Chain.delegateCall` used to execute function of another contract, but the execution context still belongs to the caller (Eg: A delegateCall B, Chain.store will store at A)
+-   `Chain.delegateCall` used to execute function of another contract, but the execution context still belongs to the caller (Eg: A delegateCall B, Chain.store will store at A). Use `Chain.contractCall` to execute in the context of another contract
+-   `Chain.tx.initiator` vs `Chain.tx.sender`. Initiator = User (signature binded) initiated the transaction, Sender = User/Contract (signature binded) that interacting with the contract, same applied to `Chain.msg.*` (Not confirmed yet)
 
 ## ATP-10 types
 

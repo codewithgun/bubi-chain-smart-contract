@@ -11,7 +11,7 @@ function dosAttack() {
 }
 
 function chainContractCall(params) {
-    if (!params || !params.contractAddress || !params.asset || !params.amount || !params.input) {
+    if (!params || !params.contractAddress || !params.asset || !params.amount) {
         throw "Invalid params for operation";
     }
     return Chain.contractCall(params.contractAddress, params.asset, params.amount, params.input);
@@ -32,7 +32,7 @@ function chainDelegateQuery(params) {
 }
 
 function chainDelegateCall(params) {
-    if (!params || !params.contractAddress || !params.input) {
+    if (!params || !params.contractAddress) {
         throw "Invalid params for operation";
     }
     return Chain.delegateCall(params.contractAddress, params.input);
@@ -180,6 +180,14 @@ function main(input) {
             }
         }
     }
+    chainTLog({
+        topic: "Chain.msg.initiator",
+        args: [Chain.msg.initiator]
+    });
+    chainTLog({
+        topic: "Chain.msg.sender",
+        args: [Chain.msg.sender]
+    });
 }
 
 function query(_input) {
