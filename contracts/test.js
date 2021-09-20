@@ -10,6 +10,69 @@ function dosAttack() {
     }
 }
 
+function chainContractCall(params) {
+    if (!params || !params.contractAddress || !params.asset || !params.amount || !params.input) {
+        throw "Invalid params for operation";
+    }
+    return Chain.contractCall(params.contractAddress, params.asset, params.amount, params.input);
+}
+
+function chainContractQuery(params) {
+    if (!params || !params.contractAddress || !params.input) {
+        throw "Invalid params for operation";
+    }
+    return Chain.contractQuery(params.contractAddress, params.input);
+}
+
+function chainDelegateQuery(params) {
+    if (!params || !params.contractAddress || !params.input) {
+        throw "Invalid params for operation";
+    }
+    return Chain.delegateQuery(params.contractAddress, params.input);
+}
+
+function chainDelegateCall(params) {
+    if (!params || !params.contractAddress || !params.input) {
+        throw "Invalid params for operation";
+    }
+    return Chain.delegateCall(params.contractAddress, params.input);
+}
+
+function chainPayAsset(params) {
+    if (!params || !params.address || !params.issuer || !params.code || !params.amount) {
+        throw "Invalid params for operation";
+    }
+    return Chain.payAsset(params.address, params.issuer, params.code, params.amount, "{}");
+}
+
+function chainIssueAsset(params) {
+    if (!params || !params.code || !params.amount) {
+        throw "Invalid params for operation";
+    }
+    return Chain.issueAsset(params.code, params.amount);
+}
+
+function chainPayCoin(params) {
+    if (!params || !params.address || !params.amount) {
+        throw "Invalid params for operation";
+    }
+    return Chain.payCoin(params.address, params.amount, "{}");
+}
+
+function chainGetAccountPrivilege(params) {
+    if (!params || !params.account_address) {
+        throw "Invalid params for operation";
+    }
+    return Chain.getAccountPrivilege(params.account_address);
+}
+
+function chainGetContractProperty(params) {
+    if (!params || !params.contract_address) {
+        throw "Invalid params for operation";
+    }
+    return Chain.getContractProperty(params.contract_address);
+}
+
 function chainStore(params) {
     if (!params || !params.metadata_key || !params.metadata_value) {
         throw "Invalid params for operation";
@@ -53,7 +116,7 @@ function chainGetBalance(params) {
 }
 
 function chainGetAccountAsset(params) {
-    if (!params || !params.account_address || !params.asset_key) {
+    if (!params || !params.account_address || !params.asset_key || !params.asset_key.issuer || !params.asset_key.code) {
         throw "Invalid params for operation";
     }
     return Chain.getAccountAsset(params.account_address, params.asset_key);
@@ -78,29 +141,44 @@ function multiCall() {
 }
 
 function main(input) {
-    let para = JSON.parse(input);
-    if (para.method) {
-        switch (para.method) {
-            case "chainStore":
-                chainStore(para.params);
-                break;
-            case "chainDel":
-                chainDelete(para.params);
-                break;
-            case "chainTLog":
-                chainTLog(para.params);
-                break;
-            case "multiCall":
-                multiCall();
-                break;
-            case "dosAttack":
-                dosAttack();
-                break;
-            default:
-                throw "Invalid operation type";
+    if (input) {
+        let para = JSON.parse(input);
+        if (para.method) {
+            switch (para.method) {
+                case "chainStore":
+                    chainStore(para.params);
+                    break;
+                case "chainDel":
+                    chainDelete(para.params);
+                    break;
+                case "chainTLog":
+                    chainTLog(para.params);
+                    break;
+                case "chainPayCoin":
+                    chainPayCoin(para.params);
+                    break;
+                case "chainIssueAsset": // Unable to test due to gas limit issue
+                    chainIssueAsset(para.params);
+                    break;
+                case "chainPayAsset":
+                    chainPayAsset(para.params);
+                    break;
+                case "chainDelegateCall":
+                    chainDelegateCall(para.params);
+                    break;
+                case "chainContractCall":
+                    chainContractCall(para.params);
+                    break;
+                case "multiCall":
+                    multiCall();
+                    break;
+                case "dosAttack":
+                    dosAttack();
+                    break;
+                default:
+                    throw "Invalid operation type";
+            }
         }
-    } else {
-        throw "Main interface require method";
     }
 }
 
@@ -124,6 +202,18 @@ function query(_input) {
                 break;
             case "chainGetAccountAsset":
                 result.chainGetAccountAsset = chainGetAccountAsset(input.params);
+                break;
+            case "chainGetAccountPrivilege":
+                result.chainGetAccountPrivilege = chainGetAccountPrivilege(input.params);
+                break;
+            case "chainGetContractProperty":
+                result.chainGetContractProperty = chainGetContractProperty(input.params);
+                break;
+            case "chainDelegateQuery":
+                result.chainDelegateQuery = chainDelegateQuery(input.params);
+                break;
+            case "chainContractQuery":
+                result.chainContractQuery = chainContractQuery(input.params);
                 break;
             case "dosAttack":
                 dosAttack();

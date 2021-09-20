@@ -1,0 +1,6 @@
+{
+    "method": "chainGetAccountPrivilege",
+    "params": {
+        "account_address": "adxSmSG3ESRa9cJTcUEybVzyu5snZDWKnvMNx"
+    }
+}

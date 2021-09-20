@@ -1,0 +1,9 @@
+{
+    "method": "chainPayAsset",
+    "params": {
+        "address": "adxSZ5HGEDdPUvR6jgJzc1EVaGdxxCNirDSe2",
+        "issuer": "adxScLg21R8B8kMp4athrbGHwCdxY5omKHLw8",
+        "code": "YYDS",
+        "amount": "10"
+    }
+}

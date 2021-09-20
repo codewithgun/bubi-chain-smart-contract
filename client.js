@@ -1,5 +1,5 @@
-const BubiChainSDK = require("./bubi-sdk");
+// const BubiChainSDK = require("./bubi-sdk");
 
-const sdk = new BubiChainSDK({
-    host: "http://node.bubidev.cn"
-});
+// const sdk = new BubiChainSDK({
+//     host: "http://node.bubidev.cn"
+// });

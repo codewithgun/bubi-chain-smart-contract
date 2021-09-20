@@ -1,0 +1,7 @@
+{
+    "method": "chainPayCoin",
+    "params": {
+        "address": "adxSZ5HGEDdPUvR6jgJzc1EVaGdxxCNirDSe2",
+        "amount": "10000"
+    }
+}

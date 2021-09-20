@@ -1,0 +1,7 @@
+{
+    "method": "chainIssueAsset",
+    "params": {
+        "code": "MYRC",
+        "amount": "10000"
+    }
+}

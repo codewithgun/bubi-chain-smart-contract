@@ -1,0 +1,6 @@
+{
+    "method": "chainGetContractProperty",
+    "params": {
+        "contract_address": "adxSqrxdRA9DpjiyDEP1jpqwGt3qachNhYGm9"
+    }
+}

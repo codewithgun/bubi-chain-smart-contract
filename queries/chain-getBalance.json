@@ -1,0 +1,6 @@
+{
+    "method": "chainGetBalance",
+    "params": {
+        "address": "adxSmSG3ESRa9cJTcUEybVzyu5snZDWKnvMNx"
+    }
+}

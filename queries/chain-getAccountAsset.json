@@ -1,0 +1,10 @@
+{
+    "method": "chainGetAccountAsset",
+    "params": {
+        "account_address": "adxSmSG3ESRa9cJTcUEybVzyu5snZDWKnvMNx",
+        "asset_key": {
+            "issuer": "adxSoNeEebS1eKj2ndzi2icB33ssxFb188U2p",
+            "code": "DURIAN"
+        }
+    }
+}
