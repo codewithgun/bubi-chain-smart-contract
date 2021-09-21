@@ -1,5 +1,6 @@
 # bubi-chain-smart-contract
 
+-   Everything stored or retrieved from the contract will be in `string` type
 -   The native asset = GAS, 8 decimal place
 -   Chain.store will create 2 transaction, which are base transaction (transaction initiator = client), and child transaction (transaction initiator = contrac)
 -   Failed transaction is recorded in the blockchain with 1 GAS
@@ -15,6 +16,8 @@
 -   Base reserve of 0.1 GAS for contract (not sure for account)
 -   `Chain.delegateCall` used to execute function of another contract, but the execution context still belongs to the caller (Eg: A delegateCall B, Chain.store will store at A). Use `Chain.contractCall` to execute in the context of another contract
 -   `Chain.tx.initiator` vs `Chain.tx.sender`. Initiator = User (signature binded) initiated the transaction, Sender = User/Contract (signature binded) that interacting with the contract, same applied to `Chain.msg.*` (Not confirmed yet)
+-   `Chain.block.timestamp` return microseconds, therefore always `seconds * 100000`
+-   Each `metadata_key` of the contract have an attribute `version`. It indicate the key has been modified how many time
 
 ## ATP-10 types
 
@@ -29,6 +32,7 @@
 -   Gas optimization (Answer: Batch multiple operation into single transaction, similar to Stellar Lumen "XLM")
 -   Can smart contract receive ATP-10 ? (Failed transaction: https://explorer.bubi.cn/tx/1e8ad7482945ee7be5ce1309f0a42088b6d4b0a62fba1357390823e1352a7a71) (Answer: Yes, depends on how you design the contract)
 -   0.1 GAS base reserve usage
+-   Why `Chain.tx.initiator`, `Chain.tx.sender`, `Chain.msg.sender`, `Chain.msg.initiator` return random address everytime when `query`
 
 ## To Explore
 
@@ -37,3 +41,9 @@
 -   Check whether vulnerable to well-knowns attack
 -   Multisig account (https://docs.bubi.cn/cn/docs/api_http/#%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90, https://docs.bubi.cn/cn/docs/api_http/#%E6%8E%A7%E5%88%B6%E6%9D%83%E7%9A%84%E5%88%86%E9%85%8D)
 -   Pedersen Commitment
+
+## Vulnerable Test
+
+### Arithmetic Overflow/Underflow
+
+-   It doesn't suffer overflow/underflow problem like solidity. However, it faced the precision loss issue, when value > `Number.MAX_SAFE_INTEGER` (Eg: Number.MAX_SAFE_INTEGER + 1 === Number.MAX_SAFE_INTEGER + 2)

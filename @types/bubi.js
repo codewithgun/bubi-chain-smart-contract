@@ -9,7 +9,7 @@ var Chain = {
      * let value = Chain.load('abc');
      *
      * @param {string} metadata_key metadata 的关键字
-     * @returns {boolean} 成功返回字符串，如 'values', 失败返回false
+     * @returns {boolean | string} 成功返回字符串，如 'values', 失败返回false
      */
     load: (metadata_key) => {},
     /**
@@ -306,7 +306,7 @@ var Chain = {
         sender,
         /**
          * 本次支付操作的 Gas coin
-         * @type {string}
+         * @type {number}
          */
         coinAmount,
         /**
@@ -342,4 +342,145 @@ var Chain = {
          */
         thisAddress
     }
+};
+
+/** @global */
+var Utils = {
+    /**
+     * 输出日志
+     *
+     * 权限：只读
+     *
+     * @example
+     * Utils.log(info);
+     *
+     * @param {string} info 日志内容
+     * @returns {Object | boolean} 成功无返回值，会在对应的合约执行进程里，输出一段Trace级别的日志，如 V8contract log[adxSnBFboATCEgbiDRYS7gfbe1XRsTPWJhCFE:hello]；失败返回 false
+     *
+     */
+    log: (info) => {},
+    /**
+     * 字符串数字合法性检查
+     *
+     * 权限：只读
+     *
+     * @example
+     * let ret = Utils.stoI64Check('12345678912345');
+     *
+     * @param {string} strNumber 字符串数字参数
+     * @returns {boolean} 成功返回 true，失败返回 false
+     *
+     */
+    stoI64Check: (strNumber) => {},
+    /**
+     * 64断言
+     *
+     * 权限：只读
+     *
+     * @example
+     * Utils.assert(1===1, "Not valid");
+     *
+     * @param {boolean} condition 断言变量
+     * @param {string} message 可选，失败时抛出异常的消息
+     * @returns {boolean} 成功返回 true，失败抛异常
+     *
+     */
+    assert: (condition, message) => {},
+    /**
+     * 字符串数字合法性检查
+     *
+     * 权限：只读
+     *
+     * @example
+     * let ret = Utils.stoI64Check('12345678912345');
+     *
+     * @param {string} strNumber 字符串数字参数
+     * @returns {boolean} 成功返回 true，失败返回 false
+     *
+     */
+    stoI64Check: (strNumber) => {},
+    /**
+     * 64位加法
+     *
+     * 权限：只读
+     *
+     * @example
+     * let ret = Utils.int64Add('12345678912345', 1);
+     *
+     * @param {string | number} left_value 左值
+     * @param {string | number} right_value 右值
+     * @returns {string} 成功返回字符串 '12345678912346', 失败抛异常
+     *
+     */
+    int64Add: (left_value, right_value) => {},
+    /**
+     * 64位减法
+     *
+     * 权限：只读
+     *
+     * @example
+     * let ret = Utils.int64Sub('12345678912345', 1);
+     *
+     * @param {string | number} left_value 左值
+     * @param {string | number} right_value 右值
+     * @returns {string} 成功返回字符串 '12345678912346', 失败抛异常
+     *
+     */
+    int64Sub: (left_value, right_value) => {},
+    /**
+     * 64位乘法
+     *
+     * 权限：只读
+     *
+     * @example
+     * let ret = Utils.int64Mul('12345678912345', 1);
+     *
+     * @param {string | number} left_value 左值
+     * @param {string | number} right_value 右值
+     * @returns {string} 成功返回字符串 '12345678912346', 失败抛异常
+     *
+     */
+    int64Mul: (left_value, right_value) => {},
+    /**
+     * 64位取模
+     *
+     * 权限：只读
+     *
+     * @example
+     * let ret = Utils.int64Mod('12345678912345', 1);
+     *
+     * @param {string | number} left_value 左值
+     * @param {string | number} right_value 右值
+     * @returns {string} 成功返回字符串 '1', 失败抛异常
+     *
+     */
+    int64Mod: (left_value, right_value) => {},
+    /**
+     * 64位除法
+     *
+     * 权限：只读
+     *
+     * @example
+     * let ret = Utils.int64Div('12345678912345', 1);
+     *
+     * @param {string | number} left_value 左值
+     * @param {string | number} right_value 右值
+     * @returns {string} 成功返回字符串 '6172839456172', 失败抛异常
+     *
+     */
+    int64Div: (left_value, right_value) => {},
+    /**
+     * 64位比较
+     *
+     * 权限：只读
+     *
+     * @example
+     * let ret = Utils.int64Div('12345678912345', 1);
+     *
+     * @param {string | number} left_value 左值
+     * @param {string | number} right_value 右值
+     * @returns {number} 成功返回数字 (1：左值大于右值，0：等于，-1 ：小于)，失败抛异常
+     *
+     */
+    int64Compare: (left_value, right_value) => {}
 };
