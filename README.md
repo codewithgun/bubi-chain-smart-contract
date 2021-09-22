@@ -47,3 +47,9 @@
 ### Arithmetic Overflow/Underflow
 
 -   It doesn't suffer overflow/underflow problem like solidity. However, it faced the precision loss issue, when value > `Number.MAX_SAFE_INTEGER` (Eg: Number.MAX_SAFE_INTEGER + 1 === Number.MAX_SAFE_INTEGER + 2)
+
+### Bypass contract property checking
+
+-   Not vulnerable
+
+### Reentrancy
