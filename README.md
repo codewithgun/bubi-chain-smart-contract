@@ -14,7 +14,7 @@
 -   Similar to tron, where an address/account is activated after receive first GAS payment
 -   Transaction execution timeout is depends on both block gas limit, and time limit (1 seconds), therefore avoid too much loop
 -   Base reserve of 0.1 GAS for contract (not sure for account)
--   `Chain.delegateCall` used to execute function of another contract, but the execution context still belongs to the caller (Eg: A delegateCall B, Chain.store will store at A). Use `Chain.contractCall` to execute in the context of another contract
+-   `Chain.delegateCall` used to execute function of another contract, but the execution context still belongs to the caller (Eg: A delegateCall B, Chain.store will store at A). Use `Chain.contractCall` to execute in the context of another contract (like borrow another contract logic to use)
 -   `Chain.tx.initiator` vs `Chain.tx.sender`. Initiator = User (signature binded) initiated the transaction, Sender = User/Contract (signature binded) that interacting with the contract, same applied to `Chain.msg.*` (Not confirmed yet)
 -   `Chain.block.timestamp` return microseconds, therefore always `seconds * 100000`
 -   Each `metadata_key` of the contract have an attribute `version`. It indicate the key has been modified how many time
@@ -31,7 +31,7 @@
 -   Transaction execution time limit
 -   Gas optimization (Answer: Batch multiple operation into single transaction, similar to Stellar Lumen "XLM")
 -   Can smart contract receive ATP-10 ? (Failed transaction: https://explorer.bubi.cn/tx/1e8ad7482945ee7be5ce1309f0a42088b6d4b0a62fba1357390823e1352a7a71) (Answer: Yes, depends on how you design the contract)
--   0.1 GAS base reserve usage
+-   0.1 GAS base reserve usage for contract
 -   Why `Chain.tx.initiator`, `Chain.tx.sender`, `Chain.msg.sender`, `Chain.msg.initiator` return random address everytime when `query`
 
 ## To Explore

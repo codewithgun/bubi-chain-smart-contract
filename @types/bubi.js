@@ -333,15 +333,15 @@ var Chain = {
          * @example
          * 例如某账号A发起了一笔交易tx0，tx0中第0（从0开始计数）个操作是给某个合约账户转移资产(调用合约), 那么Chain.msg.operationIndex的值就是0。
          */
-        operationIndex,
-        /**
-         * 当前合约账号的地址
-         * @type {string}
-         * @example
-         * 例如账号x发起了一笔交易调用合约Y，本次执行过程中，该值就是Y合约账号的地址
-         */
-        thisAddress
-    }
+        operationIndex
+    },
+    /**
+     * 当前合约账号的地址
+     * @type {string}
+     * @example
+     * 例如账号x发起了一笔交易调用合约Y，本次执行过程中，该值就是Y合约账号的地址
+     */
+    thisAddress
 };
 
 /** @global */
@@ -482,5 +482,18 @@ var Utils = {
      * @returns {number} 成功返回数字 (1：左值大于右值，0：等于，-1 ：小于)，失败抛异常
      *
      */
-    int64Compare: (left_value, right_value) => {}
+    int64Compare: (left_value, right_value) => {},
+    /**
+     * 变换单位
+     *
+     * 权限：只读
+     *
+     * @example
+     * let ret = Utils.toBaseUnit('12345678912');
+     *
+     * @param {string} value 被转换的数字，只能传入字符串，可以包含小数点，且小数点之后最多保留 8 位数字
+     * @returns {string | boolean} 成功会返回乘以 10^8 的字符串，失败会返回 false
+     *
+     */
+    toBaseUnit: (value) => {}
 };
