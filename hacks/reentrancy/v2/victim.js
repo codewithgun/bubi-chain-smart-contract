@@ -3,8 +3,10 @@ function init(bar) {
     return;
 }
 
-function main() {
-    Chain.contractCall(Chain.msg.sender, true, "0", "1");
+function main(recall) {
+    if (Number(recall) === 1) {
+        Chain.contractCall(Chain.msg.sender, true, "0", "{}");
+    }
 }
 
 function query(input) {

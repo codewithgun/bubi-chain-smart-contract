@@ -18,6 +18,8 @@
 -   `Chain.tx.initiator` vs `Chain.tx.sender`. Initiator = User (signature binded) initiated the transaction, Sender = User/Contract (signature binded) that interacting with the contract, same applied to `Chain.msg.*` (Not confirmed yet)
 -   `Chain.block.timestamp` return microseconds, therefore always `seconds * 100000`
 -   Each `metadata_key` of the contract have an attribute `version`. It indicate the key has been modified how many time
+-   Max 5 recursive contract call. (A -> B -> C -> D -> E)
+-   Contract can `Chain.contractCall` on non-contract account
 
 ## ATP-10 types
 
@@ -53,3 +55,5 @@
 -   Not vulnerable
 
 ### Reentrancy
+
+-   Yes, but maximum interaction between contract 5 times (include user interaction with contract)

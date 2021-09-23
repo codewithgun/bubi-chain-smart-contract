@@ -1,27 +1,18 @@
 "use strict";
-function init(bar) {
-    Chain.store("address", bar);
-    Chain.store("count", "5");
+function init(address) {
+    Chain.store("address", address);
+    Chain.store("count", "2");
     return;
 }
 
 function main(input) {
-    // if (Number(input) > 0) {
-    //     Chain.store("count", input);
-    //     return;
-    // }
-    // let count = Number(Chain.load("count"));
-    // if (count > 0) {
-    // Chain.store("count", String(count - 1));
-    // Chain.contractCall(Chain.load("address"), true, "0", "");
-    // }
     let count = Number(Chain.load("count"));
-    Chain.tlog("count", count);
-    if (Number(input) !== 1) {
-        Chain.store("count", String(count - 1));
-        Chain.contractCall(Chain.load("address"), true, "0", "");
-    } else {
-        Chain.store("count", String(count - 1));
+    if (count > 0) {
+        let victim = Chain.load("address");
+        count = count - 1;
+        let shouldRecall = count === 0 ? "0" : "1";
+        Chain.store("count", String(count));
+        Chain.contractCall(victim, true, "0", shouldRecall);
     }
 }
 
