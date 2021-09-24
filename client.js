@@ -19,6 +19,8 @@ const account = {
 //     address: "adxSuYrFE75krqFRSif1wnWec7nv6p72Yoiid"
 // };
 
+sdk.block
+
 const activeAcc = sdk.operation.accountActivateOperation({
     sourceAddress: "adxSuYrFE75krqFRSif1wnWec7nv6p72Yoiid",
     destAddress: "adxSu7ppttZEFXRY2EijjeA8D27jKQcBwxyGU",
