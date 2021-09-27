@@ -1,3 +1,4 @@
 .prettierrc
 /sample
+/ignore
 /node_modules
