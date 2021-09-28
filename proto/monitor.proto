@@ -1,0 +1,172 @@
+syntax = "proto3";
+package monitor;
+option java_package = "cn.bubi.blockchain.adapter3";
+
+import "chain.proto";
+import "common.proto";
+
+enum MONITOR_MESSAGE_TYPE{
+	MONITOR_MSGTYPE_NONE = 0;
+	MONITOR_MSGTYPE_HELLO = 30;
+	MONITOR_MSGTYPE_REGISTER = 31;
+	MONITOR_MSGTYPE_SYSTEM = 34;
+	MONITOR_MSGTYPE_CHAIN = 40;
+	MONITOR_MSGTYPE_AUTHORIZATION = 41;
+	MONITOR_MSGTYPE_NODE_INFO = 42;
+	MONITOR_MSGTYPE_BROADCAST = 43;
+}
+
+message Hello {
+	int64 service_version  = 1;
+	int64 connection_timeout = 2;
+	int64 timestamp = 3;
+}
+
+message SystemInfo {
+	string host_name = 1;
+	string os_version = 2;
+	string os_bit = 3;
+	int64 system_uptime = 4;
+	string cpu_id = 5;
+	repeated string mac_addresses = 6;
+}
+
+message Register {
+	string id = 1;
+	string blockchain_version = 2;
+	int64 agent_version = 3;
+	int64 network_id = 4;
+	string node_address = 5;
+	string validator_address = 6;
+	int64 process_uptime = 7;
+	protocol.LedgerHeader ledger_header = 8;
+	SystemInfo system = 9;
+	int64 timestamp = 10;
+	string bin_path = 11;
+}
+
+message Peer {
+	string node_address = 1;
+	int64 delay = 2;
+	bool active = 3;
+	string ip_address = 4;
+	int64 active_time = 5;
+	bool in_bound = 6;
+}
+
+message P2PConnection {
+	int64 listen_port = 1;
+	repeated Peer peers = 2;
+}
+
+message ListenAddresses {
+	P2PConnection p2p_connection = 1;
+	string webserver = 2;
+	string wsserver = 3;
+}
+
+message ChainStatus {
+	protocol.LedgerHeader ledger_header = 1;
+	repeated string validators = 2;
+	int64 transactions_cache_size = 3;
+	int64 account_count = 4;
+	ListenAddresses listen_addresses = 5;
+	int64 timestamp = 6;
+}
+
+message SystemResource {
+	int64 available = 1;
+	int64 total = 2;
+	double used_percent = 3;
+}
+
+message SystemStatus {
+	double cpu = 1;
+	SystemResource memory = 2;
+	repeated Disc discs = 3;
+}
+
+message Disc {
+	string path= 1;
+	SystemResource resource = 2;
+}
+
+message SignAlgorithm {
+	string algorithm = 1;
+	string parameter = 2;
+}
+
+message CertSign {
+	SignAlgorithm sign_algorithm = 1;
+	bytes sign = 2;
+}
+
+message Validity {
+	int64 not_before = 1;
+	int64 not_after = 2;
+}
+
+message CertPublic {
+	SignAlgorithm algorithm = 1;
+	bytes modules = 2;
+	string key_size = 3;
+	string exponent = 4;
+}
+
+message CertExtension {
+	string name = 1;
+	string value = 2;
+}
+
+message CertExtensions {
+	bool is_ca = 1;
+	repeated CertExtension cert_extensions = 2;
+}
+
+message Cert {
+	string version = 1;
+	string id = 2;
+	CertSign sign = 3;
+	string issuer = 4;
+	Validity validity = 5;
+	string subject = 6;
+	CertPublic cert_public = 7;
+	CertExtensions cert_extensions = 8;
+} 
+
+message LicenseMessage {
+	string id = 1;
+	int64 network_id = 2;
+	string authority = 3;
+	string subject = 4;
+	string certificate_id = 5;
+	string hardware = 6;
+	string time = 7;
+	string extra_data = 8;
+	string version = 9;
+}
+
+message License {
+	LicenseMessage message = 1;
+	protocol.Signature verification = 2;
+}
+
+message Authorization {
+	Cert verify = 1;
+	Cert entity = 2;
+	License license = 3;
+}
+
+message NodeInfo {
+	ChainStatus chain_status = 1;
+	SystemStatus system_status = 2;
+	Authorization authorization = 3;
+}
+
+message BroadcastTx {
+	int64 network_id = 1;
+	string source_node_address = 2;
+	repeated string target_node_addresses = 3;
+	string tx_hash = 4;
+	int64 timestamp = 5;
+}

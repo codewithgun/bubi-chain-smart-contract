@@ -2,7 +2,7 @@
 
 -   Everything stored or retrieved from the contract will be in `string` type
 -   The native asset = GAS, 8 decimal place
--   Chain.store will create 2 transaction, which are base transaction (transaction initiator = client), and child transaction (transaction initiator = contrac)
+-   Chain.store will create 2 transaction, which are base transaction (transaction initiator = client), and child transaction (transaction initiator = contract)
 -   Failed transaction is recorded in the blockchain with 1 GAS
 -   Similar to Ethereum, query/call doesn't cost you any gas
 -   The `contract_tx_hashes` in the transaction result was the child transaction (Eg: https://explorer.bubi.cn/tx/d24b0fbd72cec7d60222c26d106bc10a86a759a2d44afcdd44f96367f4c840de)
