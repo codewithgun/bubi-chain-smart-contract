@@ -1,6 +1,12 @@
 {
-    "method": "chainLoad",
+    "method": "updateCertificate",
     "params": {
-        "metadata_key": "my_store"
+        "certificateNumber": 1,
+        "name": "AK",
+        "identifier": "Agmo",
+        "programName": "HelloAgmo",
+        "completionDate": "2021-09-28T14:30:59.917Z",
+        "trainerName": "AK48",
+        "grade": "A+"
     }
 }
